@@ -65,11 +65,46 @@ Figma の MCP を使って、1 ラリーでここまでのコードを生成し�
 
 ![実際に生成されたコード](./image/image_3.png)
 
-## 実際の実装
+## 実装方針
 
-実際の実装は驚くほど簡単です。
+実際の実装を見てみましょう。実装は驚くほど簡単です。
+前提として、社内の人間のみが使えればそれでよいということ、セキュリティの観点からローカルである程度完結をさせたいという点、最後に運用をできるだけ簡単にしたいという点があります。
 
-まず MCP には
+最後の観点がとても重要で、Ubie はまだまだ大きい会社ではなくデザインシステムにたくさんのリソースを寄せられるような判断は今はできません。そのため、今後 Ubie Vitals にコンポーネントが追加、改修されたとしても MCP 自体を更新する必要がないようにしたいということです。
+そのため、以下のような実装方針で進めることにしました。
+
+1.  Ubie UI のコードをベースに MCP を実装する
+2.  コードが変更されたら、その変更を MCP に自動で反映されるようにする
+
+## setup 方法
+
+以下のリポジトリを clone します。
+
+```bash
+git clone https://github.com/ubie-oss/ubie-ui.git
+git clone https://github.com/ubie-oss/design-tokens.git
+git clone https://github.com/ubie-oss/ubie-icons.git
+```
+
+社内のフロントエンドを触るエンジニアはすでにこれらのリポジトリを clone している人が多いため、そのまま使うことができます。
+
+また、これは一応 OSS なので、誰でもみられるようになっています。
+
+## 主な機能
+
+Ubie UI MCP は以下のような機能を tools を使って AI に提供します。
+
+- get-components
+- get-style-types
+- get-design-tokens
+
+### get-components - コンポーネントの一覧を取得する
+
+### get-style-types - スタイルの種類を取得する
+
+### get-design-tokens - デザイントークンを取得する
+
+## 使い方
 
 ## Figma MCP との連携
 
