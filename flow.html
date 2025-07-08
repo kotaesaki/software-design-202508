@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>プロジェクト開発フロー</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: 'Noto Sans JP', 'Inter', sans-serif;
+        overflow-x: hidden; /* 横スクロールを防止 */
+      }
+      /* アニメーション用のカスタムクラス */
+      .fade-in-up {
+        animation: fadeInUp 0.6s ease-out forwards;
+        opacity: 0;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      /* アニメーションの遅延 */
+      .delay-1 {
+        animation-delay: 0.1s;
+      }
+      .delay-2 {
+        animation-delay: 0.2s;
+      }
+      .delay-3 {
+        animation-delay: 0.3s;
+      }
+      .delay-4 {
+        animation-delay: 0.4s;
+      }
+      .delay-5 {
+        animation-delay: 0.5s;
+      }
+      .delay-6 {
+        animation-delay: 0.6s;
+      }
+      .delay-7 {
+        animation-delay: 0.7s;
+      }
+
+      /* 縦の矢印のスタイル */
+      .arrow-down {
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 12px solid #6b7280; /* gray-500 */
+      }
+
+      /* ループ矢印のSVGパスのアニメーション */
+      #loop-arrow-path {
+        stroke-dasharray: 10, 10;
+        animation: dash 15s linear infinite;
+      }
+      @keyframes dash {
+        to {
+          stroke-dashoffset: -1000;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <div class="container mx-auto p-4 md:p-8 max-w-4xl">
+      <!-- ヘッダー -->
+      <header class="text-center mb-10 md:mb-16 fade-in-up">
+        <h1 class="text-2xl md:text-4xl font-bold text-gray-900">
+          複雑なフロントエンドリニューアルのプロジェクトフロー
+        </h1>
+        <p class="mt-3 text-md md:text-lg text-gray-600">
+          デザイナー、PdM、エンジニアの3人が密に連携した開発サイクル
+        </p>
+      </header>
+
+      <div class="relative">
+        <!-- ループ矢印を描画するSVGコンテナ -->
+        <svg
+          id="loop-arrow-container"
+          class="absolute top-0 left-0 w-full h-full pointer-events-none z-10 fade-in-up delay-7"
+        >
+          <defs>
+            <marker
+              id="arrowhead"
+              markerWidth="10"
+              markerHeight="7"
+              refX="0"
+              refY="3.5"
+              orient="auto"
+            >
+              <polygon points="0 0, 10 3.5, 0 7" fill="#fb923c" />
+            </marker>
+          </defs>
+          <path
+            id="loop-arrow-path"
+            d=""
+            stroke="#fb923c"
+            stroke-width="3"
+            fill="none"
+            marker-end="url(#arrowhead)"
+          />
+          <text
+            id="loop-arrow-text"
+            fill="#fb923c"
+            font-size="14"
+            font-weight="bold"
+            style="transform: rotate(-90deg); text-anchor: middle"
+          >
+            改善ループ
+          </text>
+        </svg>
+
+        <div
+          class="space-y-4 md:space-y-0 md:grid md:grid-cols-1 gap-8 items-start"
+        >
+          <!-- フローのコンテナ -->
+          <div class="relative">
+            <!-- ステップ 1 -->
+            <div
+              id="step1"
+              class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 fade-in-up delay-1"
+            >
+              <div class="flex items-center space-x-4">
+                <div
+                  class="flex-shrink-0 bg-sky-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl"
+                >
+                  1
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900">デザイン作成</h3>
+                  <p class="text-gray-600">デザイナーがFigmaでデザインを作成</p>
+                </div>
+              </div>
+              <div class="mt-4 flex items-center justify-end space-x-2 text-sm">
+                <span
+                  class="inline-flex items-center rounded-full bg-sky-100 px-3 py-1 font-medium text-sky-700"
+                >
+                  <svg
+                    class="w-5 h-5 mr-1.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
+                    ></path>
+                  </svg>
+                  デザイナー
+                </span>
+              </div>
+            </div>
+
+            <!-- 矢印 -->
+            <div class="flex justify-center my-4 fade-in-up delay-2">
+              <div class="arrow-down"></div>
+            </div>
+
+            <!-- ステップ 2 -->
+            <div
+              class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 fade-in-up delay-2"
+            >
+              <div class="flex items-center space-x-4">
+                <div
+                  class="flex-shrink-0 bg-teal-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl"
+                >
+                  2
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900">
+                    チームレビュー
+                  </h3>
+                  <p class="text-gray-600">
+                    完成したデザインをチーム全員でレビュー
+                  </p>
+                </div>
+              </div>
+              <div
+                class="mt-4 flex flex-wrap items-center justify-end gap-2 text-sm"
+              >
+                <span
+                  class="inline-flex items-center rounded-full bg-sky-100 px-3 py-1 font-medium text-sky-700"
+                  >デザイナー</span
+                >
+                <span
+                  class="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 font-medium text-purple-700"
+                  >PdM</span
+                >
+                <span
+                  class="inline-flex items-center rounded-full bg-amber-100 px-3 py-1 font-medium text-amber-700"
+                  >エンジニア</span
+                >
+              </div>
+            </div>
+
+            <!-- 矢印 -->
+            <div class="flex justify-center my-4 fade-in-up delay-3">
+              <div class="arrow-down"></div>
+            </div>
+
+            <!-- ステップ 3 -->
+            <div
+              class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 fade-in-up delay-3"
+            >
+              <div class="flex items-center space-x-4">
+                <div
+                  class="flex-shrink-0 bg-amber-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl"
+                >
+                  3
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900">A/Bテスト実装</h3>
+                  <p class="text-gray-600">
+                    エンジニアが旧画面との性能比較テストを実装
+                  </p>
+                </div>
+              </div>
+              <div class="mt-4 flex items-center justify-end space-x-2 text-sm">
+                <span
+                  class="inline-flex items-center rounded-full bg-amber-100 px-3 py-1 font-medium text-amber-700"
+                >
+                  <svg
+                    class="w-5 h-5 mr-1.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                    ></path>
+                  </svg>
+                  エンジニア
+                </span>
+              </div>
+            </div>
+
+            <!-- 矢印 -->
+            <div class="flex justify-center my-4 fade-in-up delay-4">
+              <div class="arrow-down"></div>
+            </div>
+
+            <!-- ステップ 4 -->
+            <div
+              class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 fade-in-up delay-4"
+            >
+              <div class="flex items-center space-x-4">
+                <div
+                  class="flex-shrink-0 bg-indigo-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl"
+                >
+                  4
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900">分析と共有</h3>
+                  <p class="text-gray-600">
+                    分析ダッシュボードを作成し、数値をチームで共有
+                  </p>
+                </div>
+              </div>
+              <div
+                class="mt-4 flex flex-wrap items-center justify-end gap-2 text-sm"
+              >
+                <span
+                  class="inline-flex items-center rounded-full bg-amber-100 px-3 py-1 font-medium text-amber-700"
+                  >エンジニア</span
+                >
+                <span
+                  class="inline-flex items-center rounded-full bg-sky-100 px-3 py-1 font-medium text-sky-700"
+                  >デザイナー</span
+                >
+                <span
+                  class="inline-flex items-center rounded-full bg-purple-100 px-3 py-1 font-medium text-purple-700"
+                  >PdM</span
+                >
+              </div>
+            </div>
+
+            <!-- 矢印 -->
+            <div class="flex justify-center my-4 fade-in-up delay-5">
+              <div class="arrow-down"></div>
+            </div>
+
+            <!-- ステップ 5 -->
+            <div
+              class="bg-white p-6 rounded-xl shadow-lg border border-gray-200 fade-in-up delay-5"
+            >
+              <div class="flex items-center space-x-4">
+                <div
+                  class="flex-shrink-0 bg-rose-500 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl"
+                >
+                  5
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-gray-900">
+                    検証と意思決定
+                  </h3>
+                  <p class="text-gray-600">
+                    結果に基づき、次のアクションを決定
+                  </p>
+                </div>
+              </div>
+              <div
+                class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 text-center"
+              >
+                <div
+                  class="bg-green-50 border-2 border-dashed border-green-400 rounded-lg p-4"
+                >
+                  <h4 class="font-bold text-green-700">結果が良い場合</h4>
+                  <p class="text-green-600 text-sm mt-1">
+                    全ユーザーに段階的にデプロイ
+                  </p>
+                  <svg
+                    class="w-8 h-8 mx-auto mt-2 text-green-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <div
+                  id="loop-start"
+                  class="bg-orange-50 border-2 border-dashed border-orange-400 rounded-lg p-4"
+                >
+                  <h4 class="font-bold text-orange-700">改善が必要な場合</h4>
+                  <p class="text-orange-600 text-sm mt-1">
+                    STEP 1に戻りデザインを修正
+                  </p>
+                  <svg
+                    class="w-8 h-8 mx-auto mt-2 text-orange-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      // JSでSVGの矢印を描画する関数
+      function drawLoopArrow() {
+        const startElement = document.getElementById('loop-start');
+        const endElement = document.getElementById('step1');
+        const svgContainer = document.getElementById('loop-arrow-container');
+        const path = document.getElementById('loop-arrow-path');
+        const text = document.getElementById('loop-arrow-text');
+
+        if (!startElement || !endElement || !svgContainer || !path || !text)
+          return;
+
+        const containerRect = svgContainer.getBoundingClientRect();
+        const startRect = startElement.getBoundingClientRect();
+        const endRect = endElement.getBoundingClientRect();
+
+        // 座標計算 (コンテナ基準)
+        const startX =
+          startRect.left - containerRect.left + startRect.width / 2;
+        const startY = startRect.top - containerRect.top + startRect.height;
+        const endX = endRect.left - containerRect.left + endRect.width / 2;
+        const endY = endRect.top - containerRect.top;
+
+        // 画面幅に応じて矢印の回り込むオフセットを調整
+        const offset = window.innerWidth < 768 ? -40 : -80;
+
+        const pathData = [
+          `M ${startX}, ${startY}`, // 開始点
+          `V ${startY + 20}`, // 少し下に
+          `H ${offset}`, // 左に大きく回り込む
+          `V ${endY - 20}`, // 終了点の少し上まで
+          `H ${endX}`, // 終了点の真上へ
+          `V ${endY}`, // 終了点へ
+        ].join(' ');
+
+        path.setAttribute('d', pathData);
+
+        // テキストの位置を計算
+        const textX = offset + 20; // 線の左側に配置
+        const textY = (startY + endY) / 2; // 縦方向の中央
+        text.setAttribute('x', -textY); // rotate(-90)のためxとyが逆
+        text.setAttribute('y', textX);
+      }
+
+      // 読み込み時とリサイズ時に矢印を再描画
+      window.addEventListener('load', drawLoopArrow);
+      window.addEventListener('resize', drawLoopArrow);
+    </script>
+  </body>
+</html>
